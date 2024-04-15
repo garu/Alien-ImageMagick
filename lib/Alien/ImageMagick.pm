@@ -29,6 +29,9 @@ Installing it will download and install the B<freshest image magick library and 
 from the official Image Magick website ( See L<http://www.imagemagick.org/script/install-source.php> )
 in a way that is compatible with perlbrew and/or cpanm.
 
+Alternatively, you may use the environment variable C<PERL_ALIEN_IMAGEMAGICK_VERSION>
+to pin a particular version of Image Magick (e.g. "7.1.1-30").
+
 If you use cpanm or perlbrew, this will not conflict with your system's Image Magick installation.
 
 =head1 INSTALLATION

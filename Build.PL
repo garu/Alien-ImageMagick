@@ -5,6 +5,16 @@ use Alien::Base::ModuleBuild;
 
 use Config;
 
+my $image_magick_version = 'latest';
+if ($ENV{PERL_ALIEN_IMAGEMAGICK_VERSION}) {
+    if ($ENV{PERL_ALIEN_IMAGEMAGICK_VERSION} =~ /\A(?:latest|[0-9]+(?:\.[0-9]+){2}(?:\-[0-9]+)?)\z/) {
+        $image_magick_version = $ENV{PERL_ALIEN_IMAGEMAGICK_VERSION};
+    }
+    else {
+        warn 'ignoring invalid environment variable PERL_ALIEN_IMAGEMAGICK_VERSION';
+    }
+}
+
 my $perlbin = $Config{perlpath};
 my $perlversion = $Config{version};
 my $siteprefix = $Config{siteprefix};
@@ -41,9 +51,17 @@ my $builder = Alien::Base::ModuleBuild->new(
     alien_name => 'MagickWand',
     alien_repository => {
         protocol => 'https',
-        host => 'imagemagick.org',
-        location => '/archive/',
-        exact_filename => 'ImageMagick.tar.gz'
+        ($image_magick_version eq 'latest'
+            ? (
+                host           => 'imagemagick.org',
+                location       => '/archive/',
+                exact_filename => 'ImageMagick.tar.gz',
+            ) : (
+                host           => 'github.com',
+                location       => '/ImageMagick/ImageMagick/archive/refs/tags/',
+                exact_filename => $image_magick_version . '.tar.gz',
+            )
+        )
     },
 
     alien_install_type => 'share',
