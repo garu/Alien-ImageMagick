@@ -26,7 +26,7 @@ compatible with cpanm ( L<https://metacpan.org/pod/distribution/App-cpanminus/bi
 and perlbrew ( L<https://metacpan.org/pod/distribution/App-perlbrew/bin/perlbrew> ).
 
 Installing it will download and install the B<freshest image magick library and Perl interface>
-from the official Image magick website ( See L<http://www.imagemagick.org/script/install-source.php> )
+from the official Image Magick website ( See L<http://www.imagemagick.org/script/install-source.php> )
 in a way that is compatible with perlbrew and/or cpanm.
 
 If you use cpanm or perlbrew, this will not conflict with your system's Image Magick installation.

@@ -65,11 +65,9 @@ my $builder = Alien::Base::ModuleBuild->new(
                              #
                              # This causes https://rt.cpan.org/Public/Bug/Display.html?id=98979
                              #
-                             # This (fairly) dirty patch will hopefully solve the issue,
-                             # only until Image magick decides to change their Perl distribution structure.
-
-                             # See original source in  http://trac.imagemagick.org/browser/ImageMagick/trunk/PerlMagick/Makefile.PL
-                             # if this breaks.
+                             # This (fairly) dirty patch solves the issue.
+                             # If this breaks, refer to the original source in:
+                             # https://github.com/ImageMagick/ImageMagick/blob/main/PerlMagick/Makefile.PL.in
                              q|echo "Patching Makefile.PL files in `pwd`. See |.__FILE__.q| for more"|,
                              q|perl -pi -e 's:-L\.\./magick(.*?)/\.libs:-L|.$siteprefix.q|/lib:gi' PerlMagick/Makefile.PL|,
                              q|perl -pi -e 's:-L\.\./\.\./magick(.*?)/\.libs:-L|.$siteprefix.q|/lib:gi' PerlMagick/quantum/Makefile.PL|,
